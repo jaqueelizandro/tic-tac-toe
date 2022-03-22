@@ -1,97 +1,85 @@
-* {
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 .container {
-    max-width: 960px;
+    width: 100%;
     margin: 0 auto;
 }
 
+header {
+    text-align: justify;
+}
+
 h1 {
+    display: inline-block;
+    font-family: 'Shadows Into Light', cursive;
+    text-align: left;
+    font-size: 50px;
+    padding: 1em;
+}
+
+.score {
+    display: inline-block;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 35px;
     text-align: center;
     padding: 1em;
 }
 
-table {
+.score div {
+    text-align: left;
+}
+
+.game {
     border-spacing: 0;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 85px;
+    text-align: center;
+}
+
+.game td {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
 }
 
 .square1 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-right: 2px solid green;
-    border-bottom: 2px solid green;
+    border-right: 4px solid green;
+    border-bottom: 4px solid green;
 }
 
 .square2 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-right: 2px solid green;
-    border-bottom: 2px solid green;
-    border-left: 2px solid green;
+    border-bottom: 4px solid green;
 }
 
 .square3 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-bottom: 2px solid green;
-    border-left: 2px solid green;
+    border-bottom: 4px solid green;
+    border-left: 4px solid green;
 }
 
 .square4 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-top: 2px solid green;
-    border-right: 2px solid green;
-    border-bottom: 2px solid green;
-}
-
-.square5 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-top: 2px solid green;
-    border-right: 2px solid green;
-    border-bottom: 2px solid green;
-    border-left: 2px solid green;
+    border-right: 4px solid green;
 }
 
 .square6 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-top: 2px solid green;
-    border-bottom: 2px solid green;
-    border-left: 2px solid green;
+    border-left: 4px solid green;
 }
 
 .square7 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-top: 2px solid green;
-    border-right: 2px solid green;
+    border-top: 4px solid green;
+    border-right: 4px solid green;
 }
 
 .square8 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-top: 2px solid green;
-    border-right: 2px solid green;
-    border-left: 2px solid green;
+    border-top: 4px solid green;
 }
 
 .square9 {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-top: 2px solid green;
-    border-left: 2px solid green;
+    border-top: 4px solid green;
+    border-left: 4px solid green;
 }

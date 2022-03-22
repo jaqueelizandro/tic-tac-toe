@@ -5,17 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="css/tictactoe.css">
-    <link rel="stylesheet" href="js/jquery.js">
-    <link rel="stylesheet" href="js/tictactoe.js">
+    <script src="js/jquery.js"></script>
+    <script src="js/tictactoe.js"></script>
+    <script src="js/js.js"></script>
 </head>
 <body>
 
     <div class="container">
 
-        <h1>Tic Tac Toe</h1>
+        <header>
 
-        <table>
+            <h1>tic tac toe</h1>
 
+            <div class="score">
+                <div class="x">player X</div>
+                    <div class="score-x">0</div>
+                <div class="tie">tie</div>
+                    <div class="score-tie">0</div>
+                <div class="o">player O</div>
+                    <div class="score-o">0</div>
+            </div>
+        
+        </header>
+
+        <table class = "game">
             <tr class="first-row">
                 <td class="square1"></td>
                 <td class="square2"></td>
@@ -33,7 +46,6 @@
                 <td class="square8"></td>
                 <td class="square9"></td>
             </tr>
-
         </table>
 
     </div>
