@@ -3,33 +3,12 @@
 .container {
     width: 100%;
     margin: 0 auto;
-}
-
-header {
-    text-align: justify;
+    font-family: 'Shadows Into Light', cursive;
 }
 
 h1 {
-    display: inline-block;
-    font-family: 'Shadows Into Light', cursive;
-    text-align: left;
-    font-size: 50px;
-    padding: 1em;
-}
-
-.score {
-    display: inline-block;
-    border-spacing: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 35px;
     text-align: center;
-    padding: 1em;
-}
-
-.score div {
-    text-align: left;
+    font-size: 50px;
 }
 
 .game {
@@ -37,7 +16,6 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
-    font-family: 'Shadows Into Light', cursive;
     font-size: 85px;
     text-align: center;
 }
@@ -82,4 +60,50 @@ h1 {
 .square9 {
     border-top: 4px solid green;
     border-left: 4px solid green;
+}
+
+.score {
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 1em;
+}
+
+.score div {
+    text-align: center;
+    display: inline-block;
+}
+
+.x {
+    font-size: 30px;
+    width: 110px;
+    height: 80px;
+}
+
+.tie {
+    font-size: 30px;
+    width: 40px;
+    height: 80px;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.o {
+    font-size: 30px;
+    width: 110px;
+    height: 80px;
+}
+
+.button {
+    text-align: center;
+    padding-top: 2em;
+}
+
+button {
+    font-size: 30px;
+    width: 250px;
+    height: 60px;
+    font-family: 'Shadows Into Light', cursive;
 }

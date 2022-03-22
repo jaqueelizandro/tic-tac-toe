@@ -1,7 +1,16 @@
 
 
-
 $(document).ready(function() {
+
+    let currentPlayer = 'X'
+
+    const switchPlayers = function () {
+        if (currentPlayer === 'X') {
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+    };
 
     const winnerConditions = [
         [ $('.square1'), $('.square2'), $('.square3') ],
@@ -14,66 +23,76 @@ $(document).ready(function() {
         [ $('.square3'), $('.square5'), $('.square7') ],
     ];
 
+    let keepScoreX = 0;
+    let keepScoreO = 0;
+    let keepScoreTie = 0;
+
     const endGame = function () {
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
             if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
-                console.log('end game');
+                if (currentPlayer === 'X') {
+                    keepScoreX++
+                } else {
+                    keepScoreO++
+                }
             }
         }
+
+
+
+        $('.score-x').text(keepScoreX)
+        $('.score-o').text(keepScoreO)
+        $('.score-tie').text(keepScoreTie)
+        switchPlayers();
     };
 
-    $('.square1').click(function () {
+    $('button').on('click', function () {
+        $('table tr td').text('')
+    });
+
+    $('.square1').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square2').click(function () {
+    $('.square2').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square3').click(function () {
+    $('.square3').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square4').click(function () {
+    $('.square4').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square5').click(function () {
+    $('.square5').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square6').click(function () {
+    $('.square6').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square7').click(function () {
+    $('.square7').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square8').click(function () {
+    $('.square8').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 
-    $('.square9').click(function () {
+    $('.square9').on('click', function () {
         $(this).text(currentPlayer);
-        switchPlayers();
         endGame();
     });
 

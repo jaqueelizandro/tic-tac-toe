@@ -7,26 +7,12 @@
     <link rel="stylesheet" href="css/tictactoe.css">
     <script src="js/jquery.js"></script>
     <script src="js/tictactoe.js"></script>
-    <script src="js/js.js"></script>
 </head>
 <body>
 
     <div class="container">
 
-        <header>
-
-            <h1>tic tac toe</h1>
-
-            <div class="score">
-                <div class="x">player X</div>
-                    <div class="score-x">0</div>
-                <div class="tie">tie</div>
-                    <div class="score-tie">0</div>
-                <div class="o">player O</div>
-                    <div class="score-o">0</div>
-            </div>
-        
-        </header>
+        <h1>tic tac toe</h1>
 
         <table class = "game">
             <tr class="first-row">
@@ -47,6 +33,22 @@
                 <td class="square9"></td>
             </tr>
         </table>
+
+        <div class="score">
+            <div class="x">player X
+                <span class="score-x">0</span>
+            </div>
+            <div class="tie">tie
+                <span class="score-tie">0</span>
+            </div>
+            <div class="o">player O
+                <span class="score-o">0</span>
+            </div>
+        </div>
+
+        <div class="button">
+            <button>restart game</button>
+        </div>
 
     </div>
     
