@@ -31,15 +31,17 @@ $(document).ready(function() {
             const check = winnerConditions[i];
             if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
                 roundWinner = true;
-                $('h1').text(`there is the WINNER!`)
+                $('h1').text(`There is the WINNER!`)
                 $('.square').off('click');
+                $('.game').addClass('opacity')
+                $('button').removeClass('opacity')
                 break;
             }
         }
         let roundDraw = false;
         if (!currentBoard.includes('')) {
             roundDraw = true;
-            $('h1').text(`blablalba`)
+            $('h1').text(`DRAW!`)
         }
         switchPlayers();
     };
@@ -55,6 +57,8 @@ $(document).ready(function() {
             currentBoard[index] = currentPlayer
             endGame();
         });
+        $('.game').removeClass('opacity')
+        $('button').addClass('opacity')
         $('.square').text('');
     };
 

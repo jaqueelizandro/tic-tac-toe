@@ -19,6 +19,10 @@ h1 {
     margin: 0 auto;
 }
 
+.opacity {
+    opacity: 0.2;
+}
+
 .square {
     width: 135px;
     height: 135px;
@@ -108,4 +112,8 @@ button {
     width: 250px;
     height: 60px;
     font-family: 'Shadows Into Light', cursive;
+    background-color: white;
+    border: none;
+    color: limegreen;
+    text-shadow: 1px 1px red;
 }
