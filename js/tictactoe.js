@@ -34,41 +34,39 @@ $(document).ready(function() {
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
             if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
-                if (currentPlayer === 'X') {
-                    roundWinner = true;
-                    keepScoreX++
-                    $('h1').text(`The ${currentPlayer} is the WINNER!`)
-                    display();
-                    break;
-                } else {
-                    roundWinner = true;
-                    keepScoreO++
-                    $('h1').text(`The ${currentPlayer} is the WINNER!`)
-                    display();
-                    break;
-                }
+                roundWinner = true;
             }
         }
-        $('.score-x').text(keepScoreX);
-        $('.score-o').text(keepScoreO);
-        if (roundWinner === true) {
-            return;
-        }
         let roundDraw = false;
-        if (!currentBoard.includes('')) {
+        if (!roundWinner && !currentBoard.includes('')) {
             roundDraw = true;
-            keepScoreTie++
-            $('h1').text(`DRAW!`)
-            display();
         }
+        display(roundDraw, roundWinner);
         switchPlayers();
-        $('.score-tie').text(keepScoreTie);
     };
 
-    const display = function () {
-        $('.square').off('click');
-        $('.game').addClass('opacity')
-        $('button').removeClass('opacity')
+    const display = function (roundDraw, roundWinner) {
+        if (roundDraw || roundWinner) {
+            $('.square').off('click');
+            $('.game').addClass('opacity');
+            $('button').removeClass('opacity');
+        }
+        if (roundWinner) {
+            if (currentPlayer === 'X') {
+                keepScoreX++
+                $('.score-x').text(keepScoreX);
+                $('h1').text(`${currentPlayer} is the WINNER!`)
+            } else if (currentPlayer === 'O') {
+                keepScoreO++
+                $('.score-o').text(keepScoreO);
+                $('h1').text(`${currentPlayer} is the WINNER!`)
+            }
+        }
+        if (roundDraw) {
+            keepScoreTie++
+            $('.score-tie').text(keepScoreTie);
+            $('h1').text(`DRAW!`)
+        }
     };
 
     const restartGame = function () {
