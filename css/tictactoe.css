@@ -16,10 +16,6 @@ h1 {
     grid-template-columns: repeat(3, auto);
     width: 405px;
     height: 405px;
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
     margin: 0 auto;
 }
 
@@ -28,7 +24,6 @@ h1 {
     height: 135px;
     display: flex;
     justify-content: center;
-    align-items: center;
     cursor: pointer;
     font-size: 80px;
 }

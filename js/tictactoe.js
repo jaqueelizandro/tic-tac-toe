@@ -4,8 +4,6 @@ $(document).ready(function() {
 
     let currentPlayer = 'X'
 
-    let currentBoard = ['', '', '', '', '', '', '', '', '', ]
-
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
@@ -13,6 +11,8 @@ $(document).ready(function() {
             currentPlayer = 'X'
         }
     };
+
+    let currentBoard = ['', '', '', '', '', '', '', '', '', ]
 
     const winnerConditions = [
         [ $('.square1'), $('.square2'), $('.square3') ],
@@ -29,12 +29,10 @@ $(document).ready(function() {
         let roundWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
-            if (currentBoard.includes('')) {
-                continue;
-            }
-            if (check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
+            if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
                 roundWinner = true;
                 $('h1').text(`there is the WINNER!`)
+                $('.square').off('click');
                 break;
             }
         }
@@ -50,7 +48,14 @@ $(document).ready(function() {
         currentBoard = ['', '', '', '', '', '', '', '', '', ]
         currentPlayer = 'X'
         $('h1').text('tic tac toe')
-        $('.square').on('click');
+        $('.square').on('click', function () {
+            $(this).text(currentPlayer);
+            $(this).off('click');
+            const index = $(this).index()
+            currentBoard[index] = currentPlayer
+            endGame();
+        });
+        $('.square').text('');
     };
 
     $('.square').on('click', function () {
