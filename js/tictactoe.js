@@ -49,6 +49,11 @@ $(document).ready(function() {
                 }
             }
         }
+        $('.score-x').text(keepScoreX);
+        $('.score-o').text(keepScoreO);
+        if (roundWinner === true) {
+            return;
+        }
         let roundDraw = false;
         if (!currentBoard.includes('')) {
             roundDraw = true;
@@ -57,8 +62,6 @@ $(document).ready(function() {
             display();
         }
         switchPlayers();
-        $('.score-x').text(keepScoreX);
-        $('.score-o').text(keepScoreO);
         $('.score-tie').text(keepScoreTie);
     };
 
