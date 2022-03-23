@@ -2,7 +2,13 @@
 
 $(document).ready(function() {
 
-    let currentPlayer = 'X'
+    let currentPlayer = 'X';
+
+    let currentBoard = ['', '', '', '', '', '', '', '', '', ];
+
+    let keepScoreX = 0;
+    let keepScoreO = 0;
+    let keepScoreTie = 0;
 
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
@@ -11,8 +17,6 @@ $(document).ready(function() {
             currentPlayer = 'X'
         }
     };
-
-    let currentBoard = ['', '', '', '', '', '', '', '', '', ]
 
     const winnerConditions = [
         [ $('.square1'), $('.square2'), $('.square3') ],
@@ -30,20 +34,38 @@ $(document).ready(function() {
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
             if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
-                roundWinner = true;
-                $('h1').text(`There is the WINNER!`)
-                $('.square').off('click');
-                $('.game').addClass('opacity')
-                $('button').removeClass('opacity')
-                break;
+                if (currentPlayer === 'X') {
+                    roundWinner = true;
+                    keepScoreX++
+                    $('h1').text(`The ${currentPlayer} is the WINNER!`)
+                    display();
+                    break;
+                } else {
+                    roundWinner = true;
+                    keepScoreO++
+                    $('h1').text(`The ${currentPlayer} is the WINNER!`)
+                    display();
+                    break;
+                }
             }
         }
         let roundDraw = false;
         if (!currentBoard.includes('')) {
             roundDraw = true;
+            keepScoreTie++
             $('h1').text(`DRAW!`)
+            display();
         }
         switchPlayers();
+        $('.score-x').text(keepScoreX);
+        $('.score-o').text(keepScoreO);
+        $('.score-tie').text(keepScoreTie);
+    };
+
+    const display = function () {
+        $('.square').off('click');
+        $('.game').addClass('opacity')
+        $('button').removeClass('opacity')
     };
 
     const restartGame = function () {
