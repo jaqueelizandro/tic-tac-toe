@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 .container {
-    width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
     font-family: 'Shadows Into Light', cursive;
 }
 
@@ -12,18 +12,25 @@ h1 {
 }
 
 .game {
-    border-spacing: 0;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
-    font-size: 85px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 405px;
+    height: 405px;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
-.game td {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
+.square {
+    width: 135px;
+    height: 135px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 80px;
 }
 
 .square1 {
@@ -78,7 +85,7 @@ h1 {
 
 .x {
     font-size: 30px;
-    width: 110px;
+    width: 100px;
     height: 80px;
 }
 
@@ -92,7 +99,7 @@ h1 {
 
 .o {
     font-size: 30px;
-    width: 110px;
+    width: 100px;
     height: 80px;
 }
 

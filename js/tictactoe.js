@@ -4,6 +4,8 @@ $(document).ready(function() {
 
     let currentPlayer = 'X'
 
+    let currentBoard = ['', '', '', '', '', '', '', '', '', ]
+
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
@@ -23,77 +25,44 @@ $(document).ready(function() {
         [ $('.square3'), $('.square5'), $('.square7') ],
     ];
 
-    let keepScoreX = 0;
-    let keepScoreO = 0;
-    let keepScoreTie = 0;
-
     const endGame = function () {
+        let roundWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
-            if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
-                if (currentPlayer === 'X') {
-                    keepScoreX++
-                } else {
-                    keepScoreO++
-                }
+            if (currentBoard.includes('')) {
+                continue;
+            }
+            if (check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
+                roundWinner = true;
+                $('h1').text(`there is the WINNER!`)
+                break;
             }
         }
-
-
-
-        $('.score-x').text(keepScoreX)
-        $('.score-o').text(keepScoreO)
-        $('.score-tie').text(keepScoreTie)
+        let roundDraw = false;
+        if (!currentBoard.includes('')) {
+            roundDraw = true;
+            $('h1').text(`blablalba`)
+        }
         switchPlayers();
     };
 
+    const restartGame = function () {
+        currentBoard = ['', '', '', '', '', '', '', '', '', ]
+        currentPlayer = 'X'
+        $('h1').text('tic tac toe')
+        $('.square').on('click');
+    };
+
+    $('.square').on('click', function () {
+        $(this).text(currentPlayer);
+        $(this).off('click');
+        const index = $(this).index()
+        currentBoard[index] = currentPlayer
+        endGame();
+    });
+
     $('button').on('click', function () {
-        $('table tr td').text('')
-    });
-
-    $('.square1').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square2').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square3').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square4').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square5').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square6').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square7').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square8').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
-    });
-
-    $('.square9').on('click', function () {
-        $(this).text(currentPlayer);
-        endGame();
+        restartGame();
     });
 
 });
