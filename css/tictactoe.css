@@ -39,7 +39,7 @@ main {
     opacity: 0.2;
 }
 
-.board {
+.square {
     width: 133px;
     height: 133px;
     display: flex;

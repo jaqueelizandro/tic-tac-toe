@@ -4,19 +4,9 @@ $(document).ready(function() {
 
     let currentPlayer = 'X';
 
-    let currentBoard = ['', '', '', '', '', '', '', '', '', ];
-
     let keepScoreX = 0;
     let keepScoreO = 0;
     let keepScoreTie = 0;
-
-    const switchPlayers = function () {
-        if (currentPlayer === 'X') {
-            currentPlayer = 'O'
-        } else {
-            currentPlayer = 'X'
-        }
-    };
 
     const winnerConditions = [
         [ $('.square1'), $('.square2'), $('.square3') ],
@@ -29,6 +19,14 @@ $(document).ready(function() {
         [ $('.square3'), $('.square5'), $('.square7') ],
     ];
 
+    const switchPlayers = function () {
+        if (currentPlayer === 'X') {
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+    };
+
     const endGame = function () {
         let roundWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
@@ -38,7 +36,7 @@ $(document).ready(function() {
             }
         }
         let roundDraw = false;
-        if (!roundWinner && !currentBoard.includes('')) {
+        if (!roundWinner && $('.square').text().length === 9) {
             roundDraw = true;
         }
         display(roundDraw, roundWinner);
@@ -47,8 +45,8 @@ $(document).ready(function() {
 
     const display = function (roundDraw, roundWinner) {
         if (roundDraw || roundWinner) {
-            $('.square').removeClass('square');
-            $('.game').addClass('opacity');
+            $('.square').off('click');
+            $('.square').addClass('opacity');
         }
         if (roundWinner) {
             if (currentPlayer === 'X') {
@@ -68,28 +66,25 @@ $(document).ready(function() {
         }
     };
 
-    const restartGame = function () {
-        currentBoard = ['', '', '', '', '', '', '', '', '', ]
+    const resetGame = function () {
         currentPlayer = 'X'
         $('h1').text('tic tac toe');
-        $('.board').addClass('square')
-        $('.game').removeClass('opacity')
+        $('.square').removeClass('opacity')
         $('.square').text('');
         $('.message').text('')
+        $('.square').on('click', game)
     };
 
     const game = function (square) {
         const $currentSquare = $(square.target);
         $currentSquare.text(currentPlayer);
-        $currentSquare.removeClass('square');
-        const index = $currentSquare.index();
-        currentBoard[index] = currentPlayer;
+        $currentSquare.off('click');
         endGame();
     };
 
     $('.square').on('click', game)
 
-    $('.restart').on('click', restartGame);
+    $('.restart').on('click', resetGame);
 
     $(document).on('click', function (event) {
         if (event.detail === 3) {
