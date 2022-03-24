@@ -49,7 +49,6 @@ $(document).ready(function() {
         if (roundDraw || roundWinner) {
             $('.square').off('click');
             $('.game').addClass('opacity');
-            $('button').removeClass('opacity');
         }
         if (roundWinner) {
             if (currentPlayer === 'X') {
@@ -81,8 +80,8 @@ $(document).ready(function() {
             endGame();
         });
         $('.game').removeClass('opacity')
-        $('button').addClass('opacity')
         $('.square').text('');
+        $('.message').text('')
     };
 
     $('.square').on('click', function () {
@@ -93,8 +92,18 @@ $(document).ready(function() {
         endGame();
     });
 
-    $('button').on('click', function () {
+    $('.restart').on('click', function () {
         restartGame();
+    });
+
+    $(document).on('click', function (event) {
+        if (event.detail === 3) {
+            $('.message').text('ARE YOU CRAZY?');
+            $('.game').addClass('opacity');
+        } if (event.detail === 1) {
+            $('.message').text('');
+            $('.game').removeClass('opacity');
+        }
     });
 
 });

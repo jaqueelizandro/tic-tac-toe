@@ -3,12 +3,28 @@
 .container {
     margin: 0 auto;
     box-sizing: border-box;
-    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Shadows Into Light', 'Arial, sans-serif';
 }
 
 h1 {
     text-align: center;
     font-size: 50px;
+    margin: 0;
+}
+
+main {
+    position: relative;
+}
+
+.message {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: red;
+    text-align: center;
+    width: max-content;
 }
 
 .game {
@@ -104,16 +120,15 @@ h1 {
 
 .button {
     text-align: center;
-    padding-top: 2em;
 }
 
 button {
-    font-size: 30px;
-    width: 250px;
-    height: 60px;
-    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+    width: 215px;
+    height: 45px;
     background-color: white;
-    border: none;
-    color: limegreen;
-    text-shadow: 1px 1px red;
+    color: green;
+    border-color: #e7e7e7;
+    border-radius: 15px;
+    border-style: groove;
 }
