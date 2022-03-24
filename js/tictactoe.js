@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     const display = function (roundDraw, roundWinner) {
         if (roundDraw || roundWinner) {
-            $('.square').off('click');
+            $('.square').removeClass('square');
             $('.game').addClass('opacity');
         }
         if (roundWinner) {
@@ -71,30 +71,25 @@ $(document).ready(function() {
     const restartGame = function () {
         currentBoard = ['', '', '', '', '', '', '', '', '', ]
         currentPlayer = 'X'
-        $('h1').text('tic tac toe')
-        $('.square').on('click', function () {
-            $(this).text(currentPlayer);
-            $(this).off('click');
-            const index = $(this).index()
-            currentBoard[index] = currentPlayer
-            endGame();
-        });
+        $('h1').text('tic tac toe');
+        $('.board').addClass('square')
         $('.game').removeClass('opacity')
         $('.square').text('');
         $('.message').text('')
     };
 
-    $('.square').on('click', function () {
-        $(this).text(currentPlayer);
-        $(this).off('click');
-        const index = $(this).index()
-        currentBoard[index] = currentPlayer
+    const game = function (square) {
+        const $currentSquare = $(square.target);
+        $currentSquare.text(currentPlayer);
+        $currentSquare.removeClass('square');
+        const index = $currentSquare.index();
+        currentBoard[index] = currentPlayer;
         endGame();
-    });
+    };
 
-    $('.restart').on('click', function () {
-        restartGame();
-    });
+    $('.square').on('click', game)
+
+    $('.restart').on('click', restartGame);
 
     $(document).on('click', function (event) {
         if (event.detail === 3) {

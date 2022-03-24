@@ -30,8 +30,8 @@ main {
 .game {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    width: 405px;
-    height: 405px;
+    width: 400px;
+    height: 400px;
     margin: 0 auto;
 }
 
@@ -39,9 +39,9 @@ main {
     opacity: 0.2;
 }
 
-.square {
-    width: 135px;
-    height: 135px;
+.board {
+    width: 133px;
+    height: 133px;
     display: flex;
     justify-content: center;
     cursor: pointer;
