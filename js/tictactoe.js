@@ -1,8 +1,4 @@
-
-
 $(document).ready(function() {
-
-    const $square = $('.square');
 
     let currentPlayer = 'X';
 
@@ -23,15 +19,7 @@ $(document).ready(function() {
         [ $('.square3'), $('.square5'), $('.square7') ],
     ];
 
-    const switchPlayers = function () {
-        if (currentPlayer === 'X') {
-            currentPlayer = 'O'
-        } else {
-            currentPlayer = 'X'
-        }
-    };
-
-    const checkEndGame = function () {
+    const checkWinnerAndDraw = function () {
         let roundWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
@@ -41,17 +29,25 @@ $(document).ready(function() {
             }
         }
         let roundDraw = false;
-        if (!roundWinner && $square.text().length === 9) {
+        if (!roundWinner && $('.square').text().length === 9) {
             roundDraw = true;
             gameOver = true;
         }
-        display(roundDraw, roundWinner);
+        displayEndGame(roundDraw, roundWinner);
         switchPlayers();
     };
 
-    const display = function (roundDraw, roundWinner) {
+    const switchPlayers = function () {
+        if (currentPlayer === 'X') {
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+    };
+
+    const displayEndGame = function (roundDraw, roundWinner) {
         if (gameOver) {
-            $square.addClass('opacity');
+            $('.square').addClass('opacity');
         }
         if (roundWinner) {
             if (currentPlayer === 'X') {
@@ -75,19 +71,19 @@ $(document).ready(function() {
         gameOver = false;
         currentPlayer = 'X'
         $('h1').text('tic tac toe');
-        $square.removeClass('opacity')
-        $square.text('');
+        $('.square').removeClass('opacity')
+        $('.square').text('');
     };
 
     const play = function (square) {
         const $currentSquare = $(square.target);
         if (!gameOver && $currentSquare.text() === '') {
             $currentSquare.text(currentPlayer);
-            checkEndGame();
+            checkWinnerAndDraw();
         }
     };
 
-    $square.on('click', play)
+    $('.square').on('click', play)
 
     $('.restart').on('click', resetGame);
 
