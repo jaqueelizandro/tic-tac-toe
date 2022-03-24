@@ -10,6 +10,14 @@ As a General Assembly student, this project required building this code from scr
 
 In the time frame, I achieved all the project requirements and I made a bonus part to keeping track of multiples rounds with a win counter in the time frame. And also a ***EASTER EGG***, try to find it.
 
+Usage
+----------------------
+
+* Every round start with the player 'X';
+* The game shows the message for the winner gamer and also for the draw game;
+* There is a scoreboard for keeping track of which player is winning;
+* The button restart game, reset the board at the end and in the middle of the game (if you want to give up to the current round) and keeps the score.
+
 Try it on
 ----------------------
 
