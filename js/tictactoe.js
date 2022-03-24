@@ -20,20 +20,20 @@ $(document).ready(function() {
     ];
 
     const checkWinnerAndDraw = function () {
-        let roundWinner = false;
+        let gameWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
             if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
-                roundWinner = true;
+                gameWinner = true;
                 gameOver = true;
             }
         }
-        let roundDraw = false;
-        if (!roundWinner && $('.square').text().length === 9) {
-            roundDraw = true;
+        let gameDraw = false;
+        if (!gameWinner && $('.square').text().length === 9) {
+            gameDraw = true;
             gameOver = true;
         }
-        displayEndGame(roundDraw, roundWinner);
+        displayEndGame(gameDraw, gameWinner);
         switchPlayers();
     };
 
