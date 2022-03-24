@@ -2,7 +2,11 @@
 
 $(document).ready(function() {
 
+    const $square = $('.square');
+
     let currentPlayer = 'X';
+
+    let gameOver = false;
 
     let keepScoreX = 0;
     let keepScoreO = 0;
@@ -27,26 +31,27 @@ $(document).ready(function() {
         }
     };
 
-    const endGame = function () {
+    const checkEndGame = function () {
         let roundWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
             const check = winnerConditions[i];
             if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
                 roundWinner = true;
+                gameOver = true;
             }
         }
         let roundDraw = false;
-        if (!roundWinner && $('.square').text().length === 9) {
+        if (!roundWinner && $square.text().length === 9) {
             roundDraw = true;
+            gameOver = true;
         }
         display(roundDraw, roundWinner);
         switchPlayers();
     };
 
     const display = function (roundDraw, roundWinner) {
-        if (roundDraw || roundWinner) {
-            $('.square').off('click');
-            $('.square').addClass('opacity');
+        if (gameOver) {
+            $square.addClass('opacity');
         }
         if (roundWinner) {
             if (currentPlayer === 'X') {
@@ -67,22 +72,22 @@ $(document).ready(function() {
     };
 
     const resetGame = function () {
+        gameOver = false;
         currentPlayer = 'X'
         $('h1').text('tic tac toe');
-        $('.square').removeClass('opacity')
-        $('.square').text('');
-        $('.message').text('')
-        $('.square').on('click', game)
+        $square.removeClass('opacity')
+        $square.text('');
     };
 
-    const game = function (square) {
+    const play = function (square) {
         const $currentSquare = $(square.target);
-        $currentSquare.text(currentPlayer);
-        $currentSquare.off('click');
-        endGame();
+        if (!gameOver && $currentSquare.text() === '') {
+            $currentSquare.text(currentPlayer);
+            checkEndGame();
+        }
     };
 
-    $('.square').on('click', game)
+    $square.on('click', play)
 
     $('.restart').on('click', resetGame);
 
