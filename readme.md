@@ -1,54 +1,24 @@
-A first level heading
+Tic Tac Toe
 =====================
 
-A second level heading
+Project Description
 ----------------------
 
-Markdown understands paragraphs.
+This was my first development.
 
-See?
+As a General Assembly student, this project required building this code from scratch, and it was very challenging to put into practice what I had learned so far about HTML, CSS, JS (using JQUERY).
 
-# Heading
+Try it on
+----------------------
 
-## Subheading
+You can access and play this game at this link: [Project 0 - Tic Tac Toe](https://projectzero-tictactoe.netlify.app)
 
-### Subsubheading
+Image
+----------------------
 
-> I never said that.
+![tictactoe](image/image.png)
 
-## Text formatting
+Acknowledgment
+----------------------
 
-That is _italics_ or *bold*.
-
-You can probably guess what ___this___ does.
-
-This is also ***bold italics***.
-
-## Lists
-
-* grouch
-* harpo
-* chico
-
-1. vanilla
-1. chocolate
-1. caramel
-
-## Links
-
-[This is the link](http://www.ga.co/)
-
-## Images
-
-![Murray](https://www.fillmurray.com/50/50)
-
-## Code
-
-The name of the variable is `riplvb`. We often use `console.log`.
-
-```
-const hey = function () {
-    console.log('hey!');
-}
-```
-
+A big thanks to Hugh Sinclair, who helped me make this code more reliable.
