@@ -8,28 +8,32 @@ $(document).ready(function() {
     let keepScoreO = 0;
     let keepScoreTie = 0;
 
+    let currentBoard = ['', '', '', '', '', '', '', '', '', ]
+
     const winnerConditions = [
-        [ $('.square1'), $('.square2'), $('.square3') ],
-        [ $('.square4'), $('.square5'), $('.square6') ],
-        [ $('.square7'), $('.square8'), $('.square9') ],
-        [ $('.square1'), $('.square4'), $('.square7') ],
-        [ $('.square2'), $('.square5'), $('.square8') ],
-        [ $('.square3'), $('.square6'), $('.square9') ],
-        [ $('.square1'), $('.square5'), $('.square9') ],
-        [ $('.square3'), $('.square5'), $('.square7') ],
+        [ 0, 1, 2 ],
+        [ 3, 4, 5 ],
+        [ 6, 7, 8 ],
+        [ 0, 3, 6 ],
+        [ 1, 4, 7 ],
+        [ 2, 5, 8 ],
+        [ 0, 4, 8 ],
+        [ 2, 4, 6 ],
     ];
 
     const checkWinnerAndDraw = function () {
         let gameWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
-            const check = winnerConditions[i];
-            if (check[0].text() !== '' && check[0].text() === check[1].text() && check[1].text() === check[2].text()) {
+            const zero = winnerConditions[i][0];
+            const one = winnerConditions[i][1];
+            const two = winnerConditions[i][2];
+            if (currentBoard[zero] !== '' && currentBoard[zero] === currentBoard[one] && currentBoard[one] === currentBoard[two]) {
                 gameWinner = true;
                 gameOver = true;
             }
         }
         let gameDraw = false;
-        if (!gameWinner && $('.square').text().length === 9) {
+        if (!gameWinner && !currentBoard.includes('')) {
             gameDraw = true;
             gameOver = true;
         }
@@ -70,6 +74,7 @@ $(document).ready(function() {
     const resetGame = function () {
         gameOver = false;
         currentPlayer = 'X'
+        currentBoard = ['', '', '', '', '', '', '', '', '', ]
         $('h1').text('tic tac toe');
         $('.square').removeClass('opacity')
         $('.square').text('');
@@ -77,8 +82,10 @@ $(document).ready(function() {
 
     const play = function (square) {
         const $currentSquare = $(square.target);
+        const $currentIndex = $currentSquare.index();
         if (!gameOver && $currentSquare.text() === '') {
             $currentSquare.text(currentPlayer);
+            currentBoard[$currentIndex] = ($currentSquare.text())
             checkWinnerAndDraw();
         }
     };
