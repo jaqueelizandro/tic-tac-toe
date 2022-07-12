@@ -29,21 +29,37 @@ document.addEventListener("DOMContentLoaded", function() {
             gameOver = true;
         }
         displayEndGame(gameDraw, gameWinner);
-        switchPlayers();
+        if(!gameDraw && !gameWinner) {
+            switchPlayers();
+        }
     };
 
     let currentPlayer = 'X';
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
+            oponent();
         } else {
             currentPlayer = 'X'
         }
     };
 
+    const oponent = function () {
+        for (let i = 0; i < currentBoard.length; i++) {
+            if (currentBoard[i] === '') {
+                currentBoard[i] = 'O'
+                currentSquare = document.getElementById('index'+i)
+                currentSquare.textContent = currentPlayer;
+                checkWinnerAndDraw();
+                break;
+            }
+        }
+    }
+
     let keepScoreX = 0;
     let keepScoreO = 0;
-    let keepScoreTie = 0;const squares = Array.from(document.getElementsByClassName('square'));
+    let keepScoreTie = 0;
+    const squares = Array.from(document.getElementsByClassName('square'));
     const displayEndGame = function (roundDraw, roundWinner) {
         if (gameOver) {
             squares.forEach(square => {
@@ -74,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const currentIndex = currentSquare.id.match(/[0-9]/);
             if (!gameOver && currentSquare.textContent === '') {
                 currentSquare.textContent = currentPlayer;
-                currentBoard[currentIndex] = (currentSquare.textContent)
+                currentBoard[currentIndex] = currentSquare.textContent
                 checkWinnerAndDraw();
             }
         }
