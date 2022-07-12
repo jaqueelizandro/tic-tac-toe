@@ -132,3 +132,9 @@ button {
     border-radius: 15px;
     border-style: groove;
 }
+
+button:hover {
+    background-color: green;
+    color: white;
+    border-style: none;
+}

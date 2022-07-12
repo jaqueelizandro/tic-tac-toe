@@ -1,15 +1,5 @@
-$(document).ready(function() {
-
-    let currentPlayer = 'X';
-
-    let gameOver = false;
-
-    let keepScoreX = 0;
-    let keepScoreO = 0;
-    let keepScoreTie = 0;
-
+document.addEventListener("DOMContentLoaded", function() {
     let currentBoard = ['', '', '', '', '', '', '', '', '', ]
-
     const winnerConditions = [
         [ 0, 1, 2 ],
         [ 3, 4, 5 ],
@@ -21,6 +11,7 @@ $(document).ready(function() {
         [ 2, 4, 6 ],
     ];
 
+    let gameOver = false;
     const checkWinnerAndDraw = function () {
         let gameWinner = false;
         for (let i = 0; i < winnerConditions.length; i++) {
@@ -41,6 +32,7 @@ $(document).ready(function() {
         switchPlayers();
     };
 
+    let currentPlayer = 'X';
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
@@ -49,59 +41,82 @@ $(document).ready(function() {
         }
     };
 
+    let keepScoreX = 0;
+    let keepScoreO = 0;
+    let keepScoreTie = 0;const squares = Array.from(document.getElementsByClassName('square'));
     const displayEndGame = function (roundDraw, roundWinner) {
         if (gameOver) {
-            $('.square').addClass('opacity');
+            squares.forEach(square => {
+                square.classList.add('opacity');
+            });
         }
         if (roundWinner) {
             if (currentPlayer === 'X') {
                 keepScoreX++
-                $('.score-x').text(keepScoreX);
-                $('h1').text(`${currentPlayer} is the WINNER!`)
+                document.querySelector('.score-x').textContent = keepScoreX;
+                document.querySelector('h1').textContent = `${currentPlayer} is the WINNER!`;
             } else if (currentPlayer === 'O') {
                 keepScoreO++
-                $('.score-o').text(keepScoreO);
-                $('h1').text(`${currentPlayer} is the WINNER!`)
+                document.querySelector('.score-o').textContent = keepScoreO;
+                document.querySelector('h1').textContent = `${currentPlayer} is the WINNER!`;
             }
         }
         if (roundDraw) {
             keepScoreTie++
-            $('.score-tie').text(keepScoreTie);
-            $('h1').text(`DRAW!`)
+            document.querySelector('.score-tie').textContent = keepScoreTie;
+            document.querySelector('h1').textContent = `DRAW!`;
         }
     };
 
-    const resetGame = function () {
-        gameOver = false;
-        currentPlayer = 'X'
-        currentBoard = ['', '', '', '', '', '', '', '', '', ]
-        $('h1').text('tic tac toe');
-        $('.square').removeClass('opacity')
-        $('.square').text('');
-    };
-
-    const play = function (square) {
-        const $currentSquare = $(square.target);
-        const $currentIndex = $currentSquare.index();
-        if (!gameOver && $currentSquare.text() === '') {
-            $currentSquare.text(currentPlayer);
-            currentBoard[$currentIndex] = ($currentSquare.text())
-            checkWinnerAndDraw();
-        }
-    };
-
-    $('.square').on('click', play)
-
-    $('.restart').on('click', resetGame);
-
-    $(document).on('click', function (event) {
-        if (event.detail === 3) {
-            $('.message').text('ARE YOU CRAZY?');
-            $('.game').addClass('opacity');
-        } if (event.detail === 1) {
-            $('.message').text('');
-            $('.game').removeClass('opacity');
+    squares.forEach(square => {
+        square.onclick = function (event) {
+            const currentSquare = event.target;
+            const currentIndex = currentSquare.id.match(/[0-9]/);
+            if (!gameOver && currentSquare.textContent === '') {
+                currentSquare.textContent = currentPlayer;
+                currentBoard[currentIndex] = (currentSquare.textContent)
+                checkWinnerAndDraw();
+            }
         }
     });
 
+    const rematch = document.querySelector('.rematch');
+    rematch.onclick = function () {
+        gameOver = false;
+        currentPlayer = 'X'
+        currentBoard = ['', '', '', '', '', '', '', '', '', ]
+        document.querySelector('h1').textContent = 'tic tac toe';
+        squares.forEach(square => {
+            square.classList.remove('opacity');
+            square.textContent = '';
+        });
+    };
+
+    const reset = document.querySelector('.reset');
+    reset.onclick = function () {
+        gameOver = false;
+        currentPlayer = 'X'
+        keepScoreX = 0;
+        keepScoreO = 0;
+        keepScoreTie = 0;
+        document.querySelector('.score-x').textContent = keepScoreX;
+        document.querySelector('.score-o').textContent = keepScoreX;
+        document.querySelector('.score-tie').textContent = keepScoreX;
+        currentBoard = ['', '', '', '', '', '', '', '', '', ]
+        document.querySelector('h1').textContent = 'tic tac toe';
+        squares.forEach(square => {
+            square.classList.remove('opacity');
+            square.textContent = '';
+        });
+    };
+
+    document.onclick = function (event) {
+        if (event.detail === 3) {
+            document.querySelector('.message').textContent = 'ARE YOU CRAZY?';
+            document.querySelector('.game').classList.add('opacity');
+        } if (event.detail === 1) {
+            document.querySelector('.message').textContent = '';
+            document.querySelector('.game').classList.remove('opacity');
+        }
+    };
 });

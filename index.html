@@ -5,50 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="css/tictactoe.css">
-    <script src="js/jquery.js"></script>
     <script src="js/tictactoe.js"></script>
 </head>
 <body>
-
     <div class="container">
-
-        <h1>tic tac toe</h1>
-
+        <header>
+            <h1>tic tac toe</h1>
+        </header>
         <main>
-
             <div class="message"></div>
-
             <div class = "game">
-                    <div class="square square1"></div>
-                    <div class="square square2"></div>
-                    <div class="square square3"></div>
-                    <div class="square square4"></div>
-                    <div class="square square5"></div>
-                    <div class="square square6"></div>
-                    <div class="square square7"></div>
-                    <div class="square square8"></div>
-                    <div class="square square9"></div>
+                    <div class="square square1" id="index0"></div>
+                    <div class="square square2" id="index1"></div>
+                    <div class="square square3" id="index2"></div>
+                    <div class="square square4" id="index3"></div>
+                    <div class="square square5" id="index4"></div>
+                    <div class="square square6" id="index5"></div>
+                    <div class="square square7" id="index6"></div>
+                    <div class="square square8" id="index7"></div>
+                    <div class="square square9" id="index8"></div>
             </div>
-
         </main>
-
-        <div class="score">
-            <div class="x">player X
-                <span class="score-x">0</span>
+        <footer>
+            <div class="score">
+                <div class="x">player X
+                    <span class="score-x">0</span>
+                </div>
+                <div class="tie">tie
+                    <span class="score-tie">0</span>
+                </div>
+                <div class="o">player O
+                    <span class="score-o">0</span>
+                </div>
             </div>
-            <div class="tie">tie
-                <span class="score-tie">0</span>
+            <div class="button">
+                <button class="rematch">rematch</button>
+                <button class="reset">reset</button>
             </div>
-            <div class="o">player O
-                <span class="score-o">0</span>
-            </div>
-        </div>
-
-        <div class="button">
-            <button class="restart">restart game</button>
-        </div>
-
+        </footer>
     </div>
-    
 </body>
 </html>
