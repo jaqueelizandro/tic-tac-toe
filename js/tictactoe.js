@@ -52,23 +52,40 @@ document.addEventListener("DOMContentLoaded", function() {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
             if (gameMode === 'easy') {
-                setTimeout(function(){oponent()}, 600);
+                setTimeout(function(){oponentEasy()}, 600);
+            }
+            if (gameMode === 'medium') {
+                setTimeout(function(){oponentMedium()}, 600);
             }
         } else {
             currentPlayer = 'X'
         }
     };
 
-    const oponent = function () {
+    const oponentEasy = function () {
         for (let i = 0; i < currentBoard.length; i++) {
             if (currentBoard[i] === '') {
-                currentBoard[i] = 'O'
+                currentBoard[i] = 'O';
                 currentSquare = document.getElementById('index'+i)
                 currentSquare.textContent = currentPlayer;
                 checkWinnerAndDraw();
                 break;
             }
         }
+    }
+
+    const oponentMedium = function () {
+        let emptySquares = []
+        for (let i = 0; i < currentBoard.length; i++) {
+            if (currentBoard[i] === '') {
+                emptySquares.push(i)
+            }
+        }
+        const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+        currentBoard[randomSquare] = 'O';
+        currentSquare = document.getElementById('index'+randomSquare)
+        currentSquare.textContent = currentPlayer;
+        checkWinnerAndDraw();
     }
 
     let keepScoreX = 0;
