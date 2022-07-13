@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
-            oponent();
+            setTimeout(function(){oponent()}, 600);
         } else {
             currentPlayer = 'X'
         }
