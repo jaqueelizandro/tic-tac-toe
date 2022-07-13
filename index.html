@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link href="http://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
     <link rel="stylesheet" href="css/tictactoe.css">
     <script src="js/tictactoe.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>tic tac toe</h1>
+            <div class="title">
+                <h1>tic tac toe</h1>
+                <img src="./image/harry-potter-lightning.png" class="lightning" />
+            </div>
+            <div class="game-mode">
+                <p>Who will you gonna play with?</p>
+                <button class="mode" id="friend">Friend</button>
+                <button class="mode mode-img">
+                    <img src="./image/Ron-Weasley.jpg" alt="Ron Weasley" class="mode-img" id="easy" />
+                </button>
+            </div>
         </header>
         <main>
             <div class="message"></div>
-            <div class = "game">
+            <div class = "game opacity">
                     <div class="square square1" id="index0"></div>
                     <div class="square square2" id="index1"></div>
                     <div class="square square3" id="index2"></div>
@@ -26,7 +37,7 @@
                     <div class="square square9" id="index8"></div>
             </div>
         </main>
-        <footer>
+        <footer class="opacity">
             <div class="score">
                 <div class="x">player X
                     <span class="score-x">0</span>

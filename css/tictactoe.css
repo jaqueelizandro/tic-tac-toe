@@ -1,15 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('http://fonts.cdnfonts.com/css/harry-potter');
 
 .container {
     margin: 0 auto;
     box-sizing: border-box;
-    font-family: 'Shadows Into Light', 'Arial, sans-serif';
+    font-family: 'Harry Potter', sans-serif;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10em;
 }
 
 h1 {
-    text-align: center;
     font-size: 50px;
+}
+
+.lightning {
+    height: 4em;
+    padding-left: 10px;
+}
+
+.game-mode {
+    text-align: center;
     margin: 0;
+    padding-bottom: 2em;
+}
+
+.mode {
+    cursor: pointer;
+}
+
+.mode-img {
+    height: 7em;
+    border: none;
+    background: none;
 }
 
 main {
@@ -39,13 +65,18 @@ main {
     opacity: 0.2;
 }
 
+.opacity1 {
+    opacity: 0.2;
+}
+
 .square {
     width: 133px;
     height: 133px;
     display: flex;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
-    font-size: 80px;
+    font-size: 60px;
 }
 
 .square1 {
@@ -100,7 +131,7 @@ main {
 
 .x {
     font-size: 30px;
-    width: 100px;
+    width: 115px;
     height: 80px;
 }
 
@@ -114,7 +145,7 @@ main {
 
 .o {
     font-size: 30px;
-    width: 100px;
+    width: 115px;
     height: 80px;
 }
 
@@ -122,7 +153,7 @@ main {
     text-align: center;
 }
 
-button {
+footer button {
     font-size: 20px;
     width: 215px;
     height: 45px;
@@ -130,10 +161,11 @@ button {
     color: green;
     border-radius: 15px;
     border-style: groove;
+    cursor: pointer;
 }
 
-button:hover {
+/* button:hover {
     background-color: green;
     color: white;
     border-style: none;
-}
+} */

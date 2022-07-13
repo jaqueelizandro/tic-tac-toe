@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
+    let startGame = false;
+    let gameMode;
+    const modes = Array.from(document.getElementsByClassName('mode'));
+    modes.forEach(mode => {
+        mode.onclick = function (event) {
+            gameMode = event.target.id;
+            startGame = true;
+            document.querySelector('.game').classList.remove('opacity');
+            document.querySelector('footer').classList.remove('opacity');
+            document.querySelector('.rematch').classList.add('opacity');
+        }
+    });
+    
     let currentBoard = ['', '', '', '', '', '', '', '', '', ]
     const winnerConditions = [
         [ 0, 1, 2 ],
@@ -38,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const switchPlayers = function () {
         if (currentPlayer === 'X') {
             currentPlayer = 'O'
-            setTimeout(function(){oponent()}, 600);
+            if (gameMode === 'easy') {
+                setTimeout(function(){oponent()}, 600);
+            }
         } else {
             currentPlayer = 'X'
         }
@@ -65,16 +80,16 @@ document.addEventListener("DOMContentLoaded", function() {
             squares.forEach(square => {
                 square.classList.add('opacity');
             });
+            document.querySelector('.rematch').classList.remove('opacity')
         }
         if (roundWinner) {
+            document.querySelector('h1').textContent = `${currentPlayer} is the WINNER!`;
             if (currentPlayer === 'X') {
                 keepScoreX++
                 document.querySelector('.score-x').textContent = keepScoreX;
-                document.querySelector('h1').textContent = `${currentPlayer} is the WINNER!`;
             } else if (currentPlayer === 'O') {
                 keepScoreO++
                 document.querySelector('.score-o').textContent = keepScoreO;
-                document.querySelector('h1').textContent = `${currentPlayer} is the WINNER!`;
             }
         }
         if (roundDraw) {
@@ -86,30 +101,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
     squares.forEach(square => {
         square.onclick = function (event) {
-            const currentSquare = event.target;
-            const currentIndex = currentSquare.id.match(/[0-9]/);
-            if (!gameOver && currentSquare.textContent === '') {
-                currentSquare.textContent = currentPlayer;
-                currentBoard[currentIndex] = currentSquare.textContent
-                checkWinnerAndDraw();
+            if (startGame) {
+                const currentSquare = event.target;
+                const currentIndex = currentSquare.id.match(/[0-9]/);
+                if (!gameOver && currentSquare.textContent === '') {
+                    currentSquare.textContent = currentPlayer;
+                    currentBoard[currentIndex] = currentSquare.textContent
+                    checkWinnerAndDraw();
+                }
             }
         }
     });
 
     const rematch = document.querySelector('.rematch');
     rematch.onclick = function () {
-        gameOver = false;
-        currentPlayer = 'X'
-        currentBoard = ['', '', '', '', '', '', '', '', '', ]
-        document.querySelector('h1').textContent = 'tic tac toe';
-        squares.forEach(square => {
-            square.classList.remove('opacity');
-            square.textContent = '';
-        });
+        if (gameOver) {
+            gameOver = false;
+            currentPlayer = 'X'
+            currentBoard = ['', '', '', '', '', '', '', '', '', ]
+            document.querySelector('h1').textContent = 'tic tac toe';
+            document.querySelector('.rematch').classList.add('opacity')
+            squares.forEach(square => {
+                square.classList.remove('opacity');
+                square.textContent = '';
+            });
+        }
     };
 
     const reset = document.querySelector('.reset');
     reset.onclick = function () {
+        startGame = false;
         gameOver = false;
         currentPlayer = 'X'
         keepScoreX = 0;
@@ -121,18 +142,19 @@ document.addEventListener("DOMContentLoaded", function() {
         currentBoard = ['', '', '', '', '', '', '', '', '', ]
         document.querySelector('h1').textContent = 'tic tac toe';
         squares.forEach(square => {
-            square.classList.remove('opacity');
             square.textContent = '';
         });
     };
 
     document.onclick = function (event) {
-        if (event.detail === 3) {
-            document.querySelector('.message').textContent = 'ARE YOU CRAZY?';
-            document.querySelector('.game').classList.add('opacity');
-        } if (event.detail === 1) {
-            document.querySelector('.message').textContent = '';
-            document.querySelector('.game').classList.remove('opacity');
+        if (startGame) {
+            if (event.detail === 3) {
+                document.querySelector('.message').textContent = 'ARE YOU CRAZY?';
+                document.querySelector('.game').classList.add('opacity1');
+            } if (event.detail === 1) {
+                document.querySelector('.message').textContent = '';
+                document.querySelector('.game').classList.remove('opacity1');
+            }
         }
     };
 });
